@@ -5,19 +5,15 @@
 
 Изначально находимся в домашней дирректории: ~ <=> /home/vavasileva_3
 
-    `mkdir HW1_assembly`
-    
-    `cd ~/HW1_assembly/`
+    mkdir HW1_assembly
+    cd ~/HW1_assembly/
 
 Создаем символические ссылки на используемые файлы:
 
-    `ln -s /usr/share/data-minor-bioinf/assembly/oil_R1.fastq`
-    
-    `ln -s /usr/share/data-minor-bioinf/assembly/oil_R2.fastq`
-    
-    `ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R1_001.fastq`
-    
-    `ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R2_001.fastq`
+    ln -s /usr/share/data-minor-bioinf/assembly/oil_R1.fastq
+    ln -s /usr/share/data-minor-bioinf/assembly/oil_R2.fastq
+    ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R1_001.fastq
+    ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R2_001.fastq
 
 1. Случайный выбор 5 миллионов чтений типа paired-end и 1.5 миллиона чтений типа mate-pairs:
 random seed = 621
@@ -34,15 +30,13 @@ random seed = 621
 
 запуск программы fastqc последовательно для четырёх наборов чтений:
 
-    `mkdir fastqc`
-    
-    `ls sub* | xargs -P 1 -tI{} fastqc -o fastqc {}`
+    mkdir fastqc
+    ls sub* | xargs -P 1 -tI{} fastqc -o fastqc {}
 
 объединение четырёх отчётов из папки fastqc в один отчёт:
 
-    `mkdir multiqc`
-    
-    `multiqc -o multiqc fastqc`
+    mkdir multiqc
+    multiqc -o multiqc fastqc
 
 Анализируя отчёт, понимаем, что среди парных чтений наблюдаются нуклеотиды недосточного качества, а также остались адаптеры => необходимо выполнить следующий пункт.
 
@@ -61,12 +55,10 @@ random seed = 621
 5. Оценка качества подвыборок подрезанных чтений.
 запуск программы fastqc последовательно для четырёх наборов подрезанных чтений:
 
-    `mkdir trimmed_fastqc`
-    
-    `ls trimmed_fasta/* | xargs -P 1 -tI{} fastqc -o trimmed_fastqc {}`
+    mkdir trimmed_fastqc
+    ls trimmed_fasta/* | xargs -P 1 -tI{} fastqc -o trimmed_fastqc {}
 
 объединение четырёх отчётов из папки fastqc в один отчёт:
 
-    `mkdir trimmed_multiqc`
-    
-    `multiqc -o trimmed_multiqc trimmed_fastqc`
+    mkdir trimmed_multiqc
+    multiqc -o trimmed_multiqc trimmed_fastqc
