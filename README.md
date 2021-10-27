@@ -18,7 +18,7 @@
 1. Случайный выбор 5 миллионов чтений типа paired-end и 1.5 миллиона чтений типа mate-pairs:
 random seed = 621
 
-    seqtk sample -s621 oil_R1.fastq 5000000 > sub1_oil_R1.fastq
+   <seqtk sample -s621 oil_R1.fastq 5000000 > sub1_oil_R1.fastq>
     seqtk sample -s621 oil_R2.fastq 5000000 > sub2_oil_R2.fastq
     seqtk sample -s621 oilMP_S4_L001_R1_001.fastq 1500000 > sub3_oilMP_S4_L001_R1_001.fastq
     seqtk sample -s621 oilMP_S4_L001_R2_001.fastq 1500000 > sub4_oilMP_S4_L001_R2_001.fastq
