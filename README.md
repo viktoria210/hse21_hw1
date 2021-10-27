@@ -8,19 +8,16 @@
  mkdir HW1_assembly
  cd ~/HW1_assembly/
 ```
-    mkdir HW1_assembly
-    cd ~/HW1_assembly/
-
 Создаем символические ссылки на используемые файлы:
-
+```javascript
     ln -s /usr/share/data-minor-bioinf/assembly/oil_R1.fastq
     ln -s /usr/share/data-minor-bioinf/assembly/oil_R2.fastq
     ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R1_001.fastq
     ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R2_001.fastq
-
+```
 1. Случайный выбор 5 миллионов чтений типа paired-end и 1.5 миллиона чтений типа mate-pairs:
 random seed = 621
-
+```javascript
    `seqtk sample -s621 oil_R1.fastq 5000000 > sub1_oil_R1.fastq`
    
    `seqtk sample -s621 oil_R2.fastq 5000000 > sub2_oil_R2.fastq`
@@ -28,7 +25,7 @@ random seed = 621
    `seqtk sample -s621 oilMP_S4_L001_R1_001.fastq 1500000 > sub3_oilMP_S4_L001_R1_001.fastq`
    
    `seqtk sample -s621 oilMP_S4_L001_R2_001.fastq 1500000 > sub4_oilMP_S4_L001_R2_001.fastq`
-
+```
 2. Оценка качества наших подвыборок исходных чтений.
 
 запуск программы fastqc последовательно для четырёх наборов чтений:
