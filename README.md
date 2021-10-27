@@ -55,8 +55,9 @@ random seed = 621
 5. Оценка качества подвыборок подрезанных чтений.
 запуск программы fastqc последовательно для четырёх наборов подрезанных чтений:
 
-    mkdir trimmed_fastqc
-    ls trimmed_fasta/* | xargs -P 1 -tI{} fastqc -o trimmed_fastqc {}
+    `mkdir trimmed_fastqc`
+    
+    `ls trimmed_fasta/* | xargs -P 1 -tI{} fastqc -o trimmed_fastqc {}`
 
 объединение четырёх отчётов из папки fastqc в один отчёт:
 
