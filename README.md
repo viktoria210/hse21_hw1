@@ -4,7 +4,10 @@
 0. Создание папки и символических ссылок
 
 Изначально находимся в домашней дирректории: ~ <=> /home/vavasileva_3
-
+```javascript
+ mkdir HW1_assembly
+ cd ~/HW1_assembly/
+```
     mkdir HW1_assembly
     cd ~/HW1_assembly/
 
