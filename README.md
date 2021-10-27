@@ -19,8 +19,11 @@
 random seed = 621
 
    `seqtk sample -s621 oil_R1.fastq 5000000 > sub1_oil_R1.fastq`
+   
    `seqtk sample -s621 oil_R2.fastq 5000000 > sub2_oil_R2.fastq`
+   
    `seqtk sample -s621 oilMP_S4_L001_R1_001.fastq 1500000 > sub3_oilMP_S4_L001_R1_001.fastq`
+   
    `seqtk sample -s621 oilMP_S4_L001_R2_001.fastq 1500000 > sub4_oilMP_S4_L001_R2_001.fastq`
 
 2. Оценка качества наших подвыборок исходных чтений.
@@ -39,12 +42,14 @@ random seed = 621
 
 3. Подрезание чтений по качеству и удаление праймеров.
 
-    platanus_trim sub1_oil_R1.fastq sub2_oil_R2.fastq
-    platanus_internal_trim sub3_oilMP_S4_L001_R1_001.fastq sub4_oilMP_S4_L001_R2_001.fastq
+    `platanus_trim sub1_oil_R1.fastq sub2_oil_R2.fastq`
+    
+    `platanus_internal_trim sub3_oilMP_S4_L001_R1_001.fastq sub4_oilMP_S4_L001_R2_001.fastq`
 
 4. Перемещаем подрезанные чтений в отдельную папку:
 
     mkdir trimmed_fasta
+    
     mv -v fastq/*trimmed trimmed_fasta
 
 5. Оценка качества подвыборок подрезанных чтений.
