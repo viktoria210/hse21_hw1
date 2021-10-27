@@ -5,8 +5,8 @@
 
 Изначально находимся в домашней дирректории: ~ <=> /home/vavasileva_3
 ```javascript
- mkdir HW1_assembly
- cd ~/HW1_assembly/
+mkdir HW1_assembly
+cd ~/HW1_assembly/
 ```
 Создаем символические ссылки на используемые файлы:
 ```javascript
@@ -55,6 +55,6 @@ ls trimmed_fasta/* | xargs -P 1 -tI{} fastqc -o trimmed_fastqc {}
 ```
 объединение четырёх отчётов из папки fastqc в один отчёт:
 ```javascript
-    mkdir trimmed_multiqc
-    multiqc -o trimmed_multiqc trimmed_fastqc
+mkdir trimmed_multiqc
+multiqc -o trimmed_multiqc trimmed_fastqc
 ```
