@@ -58,3 +58,28 @@ ls trimmed_fasta/* | xargs -P 1 -tI{} fastqc -o trimmed_fastqc {}
 mkdir trimmed_multiqc
 multiqc -o trimmed_multiqc trimmed_fastqc
 ```
+6. Используем platanus assemble, чтобы собрать контиги из подрезанных чтений: 
+```javascript
+time platanus assemble -o Poil -t 1 -m 8 -f trimmed_fasta/sub1_oil_R1.fastq.trimmed trimmed_fasta/sub2_oil_R2.fastq.trimmed 2> assemble.log
+```
+Подсчитать сколько всего фрагментов(контигов)
+```javascript
+grep '^>'Poil_config.fa | wc -l
+```
+7. Запускаем platanus scaffold - собираем контиги в скафолды.
+```javascript
+time platanus scaffold -o Poil -t 1 -c Poil_contig.fa -IP1 trimmed_fasta/sub1_oil_R1.fastq.trimmed trimmed_fasta/sub2_oil_R2.fastq.trimmed -OP2 trimmed_fasta/sub3_oilMP_S4_L001_R1_001.fastq.int_trimmed trimmed_fasta/sub4_oilMP_S4_L001_R2_001.fastq.int_trimmed
+```
+Подсчитаем число скаффолдов:
+```javascript
+grep '^>' Poil_scaffold.fa | wc -l
+```
+8. Запускает программу platanus gap_close, чтобы закрыть gaps.
+```javascript
+time platanus gap_close -o Poil -t 1 -c Poil_scaffold.fa -IP1 trimmed_fasta/sub1_oil_R1.fastq.trimmed trimmed_fasta/sub2_oil_R2.fastq.trimmed -OP2 trimmed_fasta/sub3_oilMP_S4_L001_R1_001.fastq.int_trimmed trimmed_fasta/sub4_oilMP_S4_L001_R2_001.fastq.int_trimmed 2> gapclose.log
+```
+10. Вытащим самый длинный контиг из файла с уже закрытыми неопределённостями.
+```javascript
+echo scaffold1_cov231 > _tmp.txt
+seqtk subseq Poil_gapClosed.fa _tmp.txt > oil_genome.fna
+```
